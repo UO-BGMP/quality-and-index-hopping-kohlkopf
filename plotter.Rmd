@@ -1,0 +1,23 @@
+---
+title: "Index Hopping Plots"
+author: "Kohl Kinning"
+output: 
+  html_notebook: 
+    theme: cosmo
+---
+
+### Import
+
+```{r}
+swapped = read.delim("swapped.tsv")
+labels = swapped[1]
+```
+
+```{r}
+plot(x = swapped$Swapped.Index.Pair, y = as.numeric(swapped$Counts), breaks = 276, main = "Counts of Swapped Indexes", xlab = "Swapped Index Pairs", ylab = "Counts", xaxt = 'n')
+axis(side=1, at=swapped$Swapped.Index.Pair, labels=as.graphicsAnnot(swapped$Swapped.Index.Pair), las=2, cex.axis = 0.15)
+
+dev.copy(pdf, "swappedDist.pdf")
+dev.off
+```
+`
